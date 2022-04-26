@@ -1,0 +1,104 @@
+body {
+    background-color: rgba(144, 65, 29, 0.838);
+    text-align: center;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#canvas {
+    background-color: azure;
+    /* cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>✍️</text></svg>")
+            5 25,
+        auto; */
+    height: 100px;
+    width: 300px;
+}
+
+input {
+    background-color: azure;
+    color: black;
+    padding: 4px;
+    margin: 6px;
+}
+
+img {
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+p {
+    text-align: center;
+    font-size: 24px;
+    color: azure;
+}
+#submit {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    margin: 2px;
+    font-size: 16px;
+    border-radius: 15px;
+    padding: 7px;
+    color: rgb(245, 243, 243);
+    background-color: black;
+
+    font-weight: bold;
+}
+
+#sign {
+    font-size: 16px;
+    margin-top: 3px;
+    color: black;
+}
+#name {
+    font-size: 18px;
+    color: black;
+}
+.name {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.login {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#petition {
+    text-align: center;
+}
+
+#allSigners {
+    font-style: italic;
+    font-size: 18px;
+    color: black;
+}
+
+#editname input {
+    color: gray;
+}
+
+#editButton {
+    position: absolute;
+    top: 10;
+    right: 10;
+}
+
+#sig {
+}

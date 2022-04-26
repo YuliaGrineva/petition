@@ -29,17 +29,17 @@ VALUES ('Olaf', 'Sholz', 'sholz@gmail.com', 'hifhikjsbwhebihbfc');
 
 CREATE TABLE signatures (
     id SERIAL primary key,
-    user_id INT NOT NULL UNIQUE REFERENCES users(id),
-    signature TEXT
+    signature TEXT,
+    user_id INT NOT NULL UNIQUE REFERENCES users(id)
 );
 
-INSERT INTO signatures (signature, user_id) 
+INSERT INTO signatures ( signature, user_id) 
 VALUES ('sign', 1);
 
 INSERT INTO signatures ( signature, user_id) 
 VALUES ('sign2', 2);
 
-INSERT INTO signatures (signature, user_id) 
+INSERT INTO signatures ( signature, user_id) 
 VALUES ('sign3', 3);
 
 CREATE TABLE profiles (
@@ -60,10 +60,29 @@ INSERT INTO profiles (age, city, url, user_id)
 VALUES (88, 'Berlin', 'https://www.amazon.de/', 3);
 
 
-SELECT * FROM users
-JOIN signatures
-ON users.id = signatures.user_id
-JOIN profiles
-ON users.id = profiles.user_id
-WHERE profiles.city = 'Berlin';
+-- SELECT users.firstname AS firstname, users.lastname AS lastname, city, age, url
+-- FROM users
+-- RIGHT JOIN signatures
+-- ON users.id = signatures.user_id
+-- FULL OUTER JOIN profiles
+-- ON users.id = profiles.user_id;
 
+-- SELECT users.firstname AS firstname, users.lastname AS lastname, city, age, url, users.id
+-- FROM users
+-- JOIN signatures
+-- ON users.id = signatures.user_id
+-- RIGHT JOIN profiles
+-- ON users.id = profiles.user_id;
+
+
+-- SELECT users.firstname AS firstname, users.lastname AS lastname, users.email AS email, age, city, url
+-- FROM users
+-- RIGHT JOIN profiles
+-- ON users.id = profiles.user_id;
+
+-- -- SELECT users.firstname AS firstname, users.lastname AS lastname, city, age, url
+-- --  FROM users
+-- -- JOIN signatures
+-- -- ON users.id = signatures.user_id
+-- -- FULL OUTER JOIN profiles
+-- -- ON users.id = profiles.user_id;

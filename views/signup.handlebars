@@ -1,0 +1,47 @@
+<form id="signup" method="post">
+    <p>Pick up the piles of your dogs in Moabit!
+        <br />Sign our petition!<br />
+        It stands in meadows, on house walls, even in the middle of the
+        sidewalk.
+        <br />Anyone who leaves dog poo is not only inconsiderate towards
+        people.
+    </p>
+
+    <div class="login">
+
+        <p id="name">
+            <input type="text" name="firstname" size="40" /><br />
+            First Name
+        </p>
+        <p id="name">
+            <input type="text" name="lastname" size="40" /><br />
+            Last Name
+        </p>
+        <p id="name">
+            <input type="text" name="email" size="40" /><br />
+            E-mail
+        </p>
+        <p id="name">
+            <input type="text" name="password" size="40" /><br />
+            Password
+        </p>
+    </div>
+
+    {{#if err}}
+
+        <p>Ups, all fields must be filled!</p>
+
+    {{/if}}
+
+    {{#if err2}}
+
+        <p>Ups, this e-mail is already exist! Please,<a href="/login">log in</a>
+            or choose another email.</p>
+
+    {{/if}}
+
+    <button>SIGN UP</button>
+
+    <p>If you are already a member, please <a href="/login">log in</a>.</p>
+
+</form>

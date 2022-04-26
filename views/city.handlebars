@@ -1,0 +1,17 @@
+<p>The list of signers from {{city}}:</p>
+{{#signers}}
+
+    {{#if url}}
+        <p><a href={{url}}> {{firstname}} {{lastname}}</a>
+            {{age}}
+        </p>
+    {{else}}
+        <p>{{firstname}}
+            {{lastname}}{{age}}
+        </p>
+    {{/if}}
+{{/signers}}
+<div id="editButton">
+<a href="/profile/editing"><button>EDIT PROFILE</button></a>
+<a href="/"><button>LOG OUT</button></a>
+</div>

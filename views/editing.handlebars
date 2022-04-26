@@ -1,0 +1,45 @@
+<form id="edit" method="post">
+    <p>Edit your profile:</p>
+{{#rows}}
+    <p id="editname">
+        <input
+            type="text"
+            name="firstname"
+            size="40"
+            value="{{firstname}}"
+        /><br />
+        First Name
+    </p>
+    <p id="editname">
+        <input type="text" name="lastname" size="40" value="{{lastname}}" /><br
+        />
+        Last Name
+    </p>
+    <p id="editname">
+        <input type="text" name="email" size="40" value="{{email}}" /><br />
+        E-mail
+    </p>
+    <p id="editname">
+        <input type="text" name="password" size="40" /><br />
+        Password
+    </p>
+    <p id="editname">
+        <input type="text" name="age" size="40" value="{{age}}" /><br />
+        Age
+    </p>
+    <p id="editname">
+        <input type="text" name="city" size="40" value="{{city}}" /><br />
+        City
+    </p>
+    <p id="editname">
+        <input type="text" name="url" size="40" value="{{url}}" /><br />
+        Homepage
+    </p>
+
+    <button>UPDATE</button>
+{{/rows}}
+</form>
+<div id="editButton">
+
+<a href="/"><button>LOG OUT</button></a>
+</div>

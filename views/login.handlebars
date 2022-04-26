@@ -1,0 +1,31 @@
+<form id="login" method="post">
+    <p>Please log in.</p>
+
+    <div class="name">
+
+        <p id="name">
+            <input type="text" name="email" size="40" /><br />
+            E-mail
+        </p>
+        <p id="name">
+            <input type="text" name="password" size="40" /><br />
+            Password
+        </p>
+    </div>
+
+    {{#if err}}
+
+        <p>Ups, all fields must be filled!</p>
+
+    {{/if}}
+
+    {{#if err2}}
+
+        <p>Ups, e-mail or password does not exist! Try again or 
+            <a href="/signup">create a new account</a>.</p>
+
+    {{/if}}
+
+    <button>LOG IN</button>
+
+</form>
