@@ -12,8 +12,6 @@ body {
     /* cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>✍️</text></svg>")
             5 25,
         auto; */
-    height: 100px;
-    width: 300px;
 }
 
 input {
@@ -23,17 +21,42 @@ input {
     margin: 6px;
 }
 
-img {
-    height: 200px;
-    width: 200px;
+#logo {
+    height: 175px;
+    width: 175px;
     text-align: center;
     margin-top: 40px;
+}
+
+#a {
+    height: 100px;
+    width: 100px;
+    position: fixed;
+    top: 240px;
+    left: 70px;
+}
+
+#b {
+    height: 120px;
+    width: 150px;
+    position: fixed;
+    left: 250;
+    top: 400;
+}
+
+#c {
+    height: 80px;
+    width: 80px;
+    position: fixed;
+    right: 100;
+    bottom: 120;
 }
 
 p {
     text-align: center;
     font-size: 24px;
     color: azure;
+    margin: 4;
 }
 #submit {
     display: flex;
@@ -50,7 +73,7 @@ button {
     border-radius: 15px;
     padding: 7px;
     color: rgb(245, 243, 243);
-    background-color: black;
+    background-color: rgb(76, 75, 75);
 
     font-weight: bold;
 }
@@ -94,11 +117,27 @@ button {
     color: gray;
 }
 
-#editButton {
+input[type="submit"] {
     position: absolute;
     top: 10;
     right: 10;
+    margin: 2px;
+    font-size: 16px;
+    border-radius: 15px;
+    padding: 7px;
+    color: rgb(245, 243, 243);
+    background-color: rgb(76, 75, 75);
+
+    font-weight: bold;
 }
 
-#sig {
+#head {
+    font-size: 30;
+}
+
+#seeSigners {
+    margin-bottom: 9px;
+}
+a {
+    color: rgb(69, 62, 109);
 }

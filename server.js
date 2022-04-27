@@ -4,6 +4,7 @@ const { engine } = require("express-handlebars");
 const db = require("./database/db");
 const path = require("path");
 const cookieSession = require("cookie-session");
+const { redirect } = require("express/lib/response");
 
 console.log(db);
 
@@ -30,30 +31,34 @@ app.get("/", (req, res) => {
 });
 app.get("/petition", (req, res) => {
     console.log("GET request made to /petition route");
-    //hat user cookie? dann zu thanks
-    // if (req.session.signId) {
-    //     // redirect to B
-    //     console.log("Cookies", req.session.signId);
-    //     res.redirect("/thanks");
-    //     return;
-    // } else {
-    //     // nein zu petition
-    res.render("petition");
-
-    // response.sendFile(path.join(__dirname, "index.html"));
-    // });
+    const user_id = req.session.user_id;
+    db.getSignatureAndNameByUserId(user_id)
+        .then((foundSignature) => {
+            console.log(foundSignature);
+            if (foundSignature.rows.length > 0) {
+                console.log("the problem is here");
+                res.redirect("/thanks");
+                
+            } else {
+                res.render("petition");
+            }
+        })
+        .catch((err) => {
+            console.log("err: ", err);
+            res.render("petition", { err: true });
+        });
 });
 app.post("/petition", (req, res) => {
-    console.log("POST to /petition", req.body);
+    console.log("POST to /petition", req.session);
 
     const { signature } = req.body;
-
-    db.addSigns(signature, req.session.user_id)
-        .then(({ rows }) => {
-            console.log("rows: ", rows);
-            req.session.signId = rows[0].id;
+    console.log("Works?", signature);
+    db.addSigns({ signature: signature, user_id: req.session.user_id })
+        .then(() => {
+            //req.session.user_id = newSign.rows[0].user_id;
+            //req.session.user_id = rows[0].user_id;
             //signature ID in cookie packen
-            console.log("hahaha", req.session.signId);
+            console.log("hahaha");
             res.redirect("/thanks");
         })
         .catch((err) => {
@@ -86,8 +91,14 @@ app.post("/profile", (req, res) => {
 
 app.get("/thanks", (req, res) => {
     const { user_id } = req.session;
+
     db.getSignatureAndNameByUserId(user_id)
+
         .then((signature) => {
+            if (signature.rows.length == 0) {
+                res.redirect("/petition");
+                return;
+            }
             console.log("Signature:", signature);
             const foundSignature = signature.rows[0].signature;
             const foundName = signature.rows[0].firstname;
@@ -213,10 +224,14 @@ app.post("/profile/editing", (req, res) => {
             res.redirect("/profile/editing");
             return;
         }
-
         Promise.all([
             db.createOrUpdateProfiles(age, city, url, req.session.user_id),
-            db.updateUsersNoPass(req.session.user_id),
+            db.updateUsersNoPass(
+                firstname,
+                lastname,
+                email,
+                req.session.user_id
+            ),
         ])
             .then(() => {
                 res.redirect("/thanks");
@@ -225,17 +240,29 @@ app.post("/profile/editing", (req, res) => {
                 console.log(err);
             });
     } else {
-        db.updateUsersWithPass(req.session.user_id)
+        Promise.all([
+            db.createOrUpdateProfiles(age, city, url, req.session.user_id),
+            db.updateUsersWithPass(
+                firstname,
+                lastname,
+                email,
+                password,
+                req.session.user_id
+            ),
+        ])
             .then(() => {
-                console.log("love you");
                 res.redirect("/thanks");
             })
             .catch((err) => {
                 console.log(err);
-                res.redirect("/profile/editing");
-                return;
             });
     }
+});
+
+app.post("/logout", (req, res) => {
+    console.log("we are loggin out");
+    req.session.user_id = null;
+    res.redirect("/signup");
 });
 
 app.listen(8080, () => console.log("Server Listening..."));

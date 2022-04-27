@@ -1,21 +1,24 @@
 <form id="petition" method="post">
-    <p>Pick up the piles of your dogs in Moabit!
+   
+    <p>
         <br />Sign our petition!<br />
-        It stands in meadows, on house walls, even in the middle of the
-        sidewalk.
-        <br />Anyone who leaves dog poo is not only inconsiderate towards
-        people.
     </p>
-    
+    <p>
+        Dog poop everywhere in Berlin.
+        <br />Are your shoes clean? It's not for long!
+    </p>
+
     <div id="submit">
-        <canvas id="canvas"></canvas>
+        <canvas id="canvas" height="100" width="300"></canvas>
         <p id="sign">Sign here</p>
-        <input type="hidden" name="signature">
+        <input type="hidden" name="signature" />
         <button>SUBMIT</button>
     </div>
 </form>
 <div id="editButton">
-<a href="/profile/editing"><button>EDIT PROFILE</button></a>
-<a href="/"><button>LOG OUT</button></a>
+    <a href="/profile/editing"><button>EDIT PROFILE</button></a>
+    <form action="/logout" method="POST">
+        <input type="submit" name="logOutButton" value="LOG OUT" /></form>
+
 </div>
 <script src="script.js"></script>

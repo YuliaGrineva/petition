@@ -19,7 +19,7 @@ module.exports.getAllSignersProfiles = () => {
 module.exports.prePopulated = (id) => {
     const query = `SELECT users.firstname AS firstname, users.lastname AS lastname, users.email AS email, age, city, url
         FROM users
-        RIGHT JOIN profiles
+        FULL OUTER JOIN profiles
         ON users.id = profiles.user_id
         WHERE users.id = $1`;
     const params = [id];
@@ -87,16 +87,16 @@ module.exports.getCitySigners = ({ city }) => {
     return db.query(query, params);
 };
 
-module.exports.addSigns = (signature, user_id) => {
-    console.log("HERE IS A PROBLEM", signature, user_id);
+module.exports.addSigns = ({ signature, user_id }) => {
     const query = `
-        INSERT INTO signatures ( signature, user_id)
+        INSERT INTO signatures (signature, user_id)
         VALUES ($1, $2)
         RETURNING *
     `;
+
     const params = [signature, user_id];
+
     return db.query(query, params);
-    // req.session.signatureId = id;
 };
 
 function hashPassword(password) {
@@ -154,7 +154,7 @@ module.exports.getSignatureAndNameByUserId = (user_id) => {
     const query = `SELECT signature, firstname
     FROM signatures 
     JOIN users
-    ON users.id = signatures.user_id
+    ON signatures.user_id = users.id
     WHERE user_id = $1
     `;
     const params = [user_id];

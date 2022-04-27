@@ -86,3 +86,5 @@ VALUES (88, 'Berlin', 'https://www.amazon.de/', 3);
 -- -- ON users.id = signatures.user_id
 -- -- FULL OUTER JOIN profiles
 -- -- ON users.id = profiles.user_id;
+
+
