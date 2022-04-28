@@ -38,7 +38,6 @@ app.get("/petition", (req, res) => {
             if (foundSignature.rows.length > 0) {
                 console.log("the problem is here");
                 res.redirect("/thanks");
-                
             } else {
                 res.render("petition");
             }
@@ -265,4 +264,4 @@ app.post("/logout", (req, res) => {
     res.redirect("/signup");
 });
 
-app.listen(8080, () => console.log("Server Listening..."));
+app.listen(process.env.PORT || 8080);
