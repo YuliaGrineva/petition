@@ -32,12 +32,15 @@ app.get("/", (req, res) => {
 app.get("/petition", (req, res) => {
     console.log("GET request made to /petition route");
     const user_id = req.session.user_id;
+    console.log("user_id", user_id);
     db.getSignatureAndNameByUserId(user_id)
         .then((foundSignature) => {
             console.log(foundSignature);
             if (foundSignature.rows.length > 0) {
                 console.log("the problem is here");
                 res.redirect("/thanks");
+            } else if (!user_id) {
+                res.redirect("/");
             } else {
                 res.render("petition");
             }
@@ -198,6 +201,7 @@ app.post("/signup", (req, res) => {
     db.addUser(req.body)
         .then((newUser) => {
             req.session.user_id = newUser.rows[0].id;
+            console.log("HEREEEE", newUser.rows[0].id);
             res.redirect("/profile");
         })
         .catch((error) => {

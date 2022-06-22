@@ -10,10 +10,10 @@ module.exports.getAllSignatures = () => db.query("SELECT * FROM signatures");
 
 module.exports.getAllSignersProfiles = () => {
     const query = `SELECT users.firstname AS firstname, users.lastname AS lastname, city, age, url 
-        FROM users 
-        JOIN signatures 
+        FROM signatures 
+        JOIN users
         ON users.id = signatures.user_id 
-        FULL OUTER JOIN profiles 
+        LEFT JOIN profiles 
      ON users.id = profiles.user_id`;
     const params = [];
     return db.query(query, params);
