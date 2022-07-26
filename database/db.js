@@ -70,14 +70,6 @@ module.exports.deleteSignature = (id) => {
     return db.query(query, params);
 };
 
-// module.exports.updateProfilesIfPossible = (id) => {
-//     const query = `UPDATE age, city, url
-//         FROM profiles
-//         WHERE user_id = $1`;
-//     const params = [id];
-//     return db.query(query, params);
-// };
-
 module.exports.getCitySigners = ({ city }) => {
     const query = `SELECT * FROM users
         JOIN signatures
@@ -108,10 +100,6 @@ function hashPassword(password) {
     });
 }
 
-// module.exports.getUserById = (id) => {
-
-// };
-
 module.exports.addUser = ({ firstname, lastname, email, password }) => {
     return hashPassword(password).then((password_hash) => {
         const query = `
@@ -137,7 +125,6 @@ module.exports.addProfile = ({ age, city, url, user_id }) => {
 module.exports.checkLogin = ({ email, password }) => {
     return getUserByEmail(email).then((result) => {
         const foundUser = result.rows[0];
-        console.log("HERE", foundUser);
         if (!foundUser) {
             return null;
         }

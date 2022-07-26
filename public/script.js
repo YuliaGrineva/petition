@@ -1,4 +1,4 @@
-console.log("test");
+
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -12,30 +12,25 @@ function reposition(event) {
     coord.y = event.offsetY;
 }
 function start(event) {
-    console.log("Start");
     document.addEventListener("mousemove", draw);
     reposition(event);
 }
 function stop() {
-    console.log("Stop");
     document.removeEventListener("mousemove", draw);
     document.querySelector('[type="hidden"]').value = saveSign();
 }
 
 function saveSign() {
     const signId = canvas.toDataURL();
-    console.log("Saved");
     return signId;
 }
 
 function draw(event) {
-    console.log("Drow");
     ctx.beginPath();
     ctx.lineWidth = 3;
     ctx.lineCap = "round";
     ctx.strokeStyle = "#ACD3ED";
     ctx.moveTo(coord.x, coord.y);
-    console.log(coord.x, coord.y);
     reposition(event);
     ctx.lineTo(coord.x, coord.y);
     ctx.stroke();
